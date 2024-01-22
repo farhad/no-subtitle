@@ -25,16 +25,43 @@ public class Main {
                 } else {
                     var deleteOpStatus = checkAndDeleteIfSubtitle(file);
                     if (deleteOpStatus) {
-                        System.out.println("DELETED: " + file.getName());
+                        System.out.println("DELETED SUBTITLE: " + file.getName());
+                    }
+
+                    var deleteJunkOpStatus = checkAndDeleteHiddenJunk(file);
+                    if (deleteJunkOpStatus) {
+                        System.out.println("DELETED JUNK: " + file.getName());
+                    }
+
+                    var deleteDSStore = checkAndDeleteDSStore(file);
+                    if (deleteDSStore) {
+                        System.out.println("DELETED DS Store: " + file.getName());
                     }
                 }
             }
         }
     }
 
+
     private static boolean checkAndDeleteIfSubtitle(File file) {
         var extension = getExtension(file);
         if (extension.equals(".srt") || extension.equals(".vtt")) {
+            return file.delete();
+        }
+
+        return false;
+    }
+
+    private static boolean checkAndDeleteHiddenJunk(File file) {
+        if (file.getName().startsWith("._") && file.isHidden()) {
+            return file.delete();
+        }
+
+        return false;
+    }
+
+    private static boolean checkAndDeleteDSStore(File file) {
+        if (file.getName().equals(".DS_Store")) {
             return file.delete();
         }
 
