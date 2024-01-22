@@ -23,7 +23,10 @@ public class Main {
                 if (file.isDirectory()) {
                     traverseDirectory(file);
                 } else {
-                    checkAndDeleteIfSubtitle(file);
+                    var deleteOpStatus = checkAndDeleteIfSubtitle(file);
+                    if (deleteOpStatus) {
+                        System.out.println("DELETED: " + file.getName());
+                    }
                 }
             }
         }
@@ -32,7 +35,6 @@ public class Main {
     private static boolean checkAndDeleteIfSubtitle(File file) {
         var extension = getExtension(file);
         if (extension.equals(".srt") || extension.equals(".vtt")) {
-            System.out.println("TRUE: " + file.getName());
             return file.delete();
         }
 
