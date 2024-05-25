@@ -5,11 +5,14 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("path not specified");
-        }
+//        if (args.length == 0) {
+//            throw new IllegalArgumentException("path not specified");
+//        }
 
-        var path = new File(args[0]);
+        /**
+         * /Users/farhad/Downloads
+         */
+        var path = new File("/Users/farhad/Downloads");
         traverseDirectory(path);
     }
 
