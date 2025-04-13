@@ -5,14 +5,11 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
-//        if (args.length == 0) {
-//            throw new IllegalArgumentException("path not specified");
-//        }
+        if (args.length == 0) {
+            throw new IllegalArgumentException("path not specified");
+        }
 
-        /**
-         * /Users/farhad/Downloads
-         */
-        var path = new File("/Users/farhad/Downloads");
+        var path = new File(args[0]);
         traverseDirectory(path);
     }
 
@@ -44,7 +41,6 @@ public class Main {
             }
         }
     }
-
 
     private static boolean checkAndDeleteIfSubtitle(File file) {
         var extension = getExtension(file);
